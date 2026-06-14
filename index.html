@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Padilla Ed — Educational Consulting for Equity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2B4B;
+    --navy-light: #2A4070;
+    --gold: #C8943A;
+    --gold-light: #E5B86A;
+    --cream: #F9F5EE;
+    --cream-dark: #EDE9DF;
+    --white: #FFFFFF;
+    --slate: #4A5568;
+    --slate-light: #718096;
+    --moon: #D4B896;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2rem;
+  }
+
+  /* Moon glyph — the signature element */
+  .moon-bg {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 50%, var(--navy-light) 0%, transparent 60%);
+    border: 1.5px solid rgba(200,148,58,0.22);
+    opacity: 0.55;
+  }
+  .moon-bg::before {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,148,58,0.18);
+  }
+  .moon-bg::after {
+    content: '';
+    position: absolute;
+    inset: 80px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,148,58,0.10);
+  }
+
+  .hero-inner {
+    max-width: 820px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.70);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 2.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: var(--gold-light); }
+
+  /* ── SECTION SHELL ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-lead {
+    font-size: 1rem;
+    color: var(--slate);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin: 1rem 0 2rem;
+    border-radius: 2px;
+  }
+
+  /* ── EQUITY DEFINITION (cream alt bg) ── */
+  .equity-section { background: var(--cream-dark); }
+
+  .equity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0;
+  }
+  .equity-card {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .equity-card p {
+    font-size: 0.95rem;
+    color: var(--slate);
+    line-height: 1.75;
+  }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    padding: 1.75rem 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 18px rgba(27,43,75,0.09);
+  }
+  .service-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .service-icon svg { width: 18px; height: 18px; fill: var(--gold); }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* ── INSTRUCTIONAL SHIFTS ── */
+  .shifts-section { background: var(--navy); }
+  .shifts-section .section-title { color: var(--white); }
+  .shifts-section .section-lead { color: rgba(255,255,255,0.65); }
+
+  .shifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .shift-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(200,148,58,0.25);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+  .shift-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+  .shift-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .shift-card p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* ── CREDENTIALS ── */
+  .credentials-section { background: var(--cream); }
+
+  .cred-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-bottom: 3rem;
+  }
+  .cred-stat .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .cred-stat .label {
+    font-size: 0.9rem;
+    color: var(--slate);
+    font-weight: 500;
+  }
+
+  .cred-list {
+    columns: 2;
+    column-gap: 3rem;
+    list-style: none;
+  }
+  @media (max-width: 600px) { .cred-list { columns: 1; } }
+  .cred-list li {
+    padding: 0.55rem 0;
+    font-size: 0.9rem;
+    color: var(--slate);
+    border-bottom: 1px solid var(--cream-dark);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    break-inside: avoid;
+  }
+  .cred-list li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.5rem;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  /* ── PROFESSIONAL LEARNING ── */
+  .pl-section { background: var(--white); }
+
+  .pl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+  .pl-tag {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .pl-partners {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .pl-partner {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.88rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .pl-partner a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .pl-partner a:hover { text-decoration: underline; }
+
+  /* ── LOGO STORY ── */
+  .logo-section {
+    background: var(--cream-dark);
+  }
+  .logo-story-inner {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+  }
+  .logo-img-wrap {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .logo-text { flex: 1; }
+  .logo-story {
+    font-size: 0.95rem;
+    color: var(--slate);
+    font-style: italic;
+    line-height: 1.9;
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 640px) {
+    .logo-story-inner { flex-direction: column; text-align: center; }
+    .logo-img-wrap { width: 160px; height: 160px; }
+    .logo-text .section-eyebrow { text-align: center !important; }
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--navy); text-align: center; }
+  .contact-section .section-title { color: var(--white); }
+  .contact-section p { color: rgba(255,255,255,0.65); font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .contact-section a.email-link {
+    display: inline-block;
+    margin: 1.5rem 0;
+    color: var(--gold-light);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,148,58,0.4);
+    padding-bottom: 2px;
+  }
+  .contact-section a.email-link:hover { color: var(--white); }
+  .contact-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+  .contact-linkedin:hover { color: var(--gold-light); }
+  .contact-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.15); margin: 2rem auto; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F1A2E;
+    padding: 1.75rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .moon-bg { width: 280px; height: 280px; right: -60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#home" class="nav-logo">Padilla Ed</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#credentials">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="moon-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Educational Consulting</p>
+    <h1>Building Knowledge &amp; Language<br />for <em>Equity, Agency &amp;<br />Student Identity</em></h1>
+    <p class="hero-sub">Over 30 years of transformative work in curriculum design, emergent multilingual education, and school-wide equity initiatives — serving DC and Maryland.</p>
+    <a href="#contact" class="hero-cta">Start a Conversation</a>
+  </div>
+</section>
+
+<!-- ── EQUITY DEFINITIONS ── -->
+<section class="equity-section" id="equity">
+  <div class="container">
+    <p class="section-eyebrow">What We Believe</p>
+    <h2 class="section-title">Equity as a Practice,<br />Not a Promise</h2>
+    <div class="divider"></div>
+    <div class="equity-grid">
+      <div class="equity-card">
+        <p><strong>Equity exists</strong> when the biases derived from dominant cultural norms and values no longer predict or influence how one fares in society.</p>
+      </div>
+      <div class="equity-card">
+        <p><strong>Equity systematically promotes</strong> fair and impartial access to rights and opportunities — through scaffolds, structures, and voice.</p>
+      </div>
+      <div class="equity-card">
+        <p><strong>Educational Equity</strong> ensures all children — regardless of circumstances — receive high-quality, grade-level, standards-aligned instruction and access to strong materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="container">
+    <p class="section-eyebrow">How We Help</p>
+    <h2 class="section-title">Consulting Services</h2>
+    <div class="divider"></div>
+    <p class="section-lead">Padilla Educational Consulting partners with schools, districts, and organizations to align curriculum, deepen teacher practice, and center student voice.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Curriculum Alignment</h3>
+        <p>Standards-aligned curriculum audits across Literacy, Math, Social Studies, and Science (NGSS), with attention to rigor and equity.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Multilingual Student Supports</h3>
+        <p>Scaffolding up for Emergent Multilingual students — reducing the need for interventions by building language and content together.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <h3>Equity Audits</h3>
+        <p>Systematic reviews of instructional materials, assessments, and school culture to surface and address structural inequities.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3>Literacy &amp; Language Equity</h3>
+        <p>Grounding reading, writing, and speaking in evidence-based text practices, complex language, and content-rich nonfiction.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Professional Learning</h3>
+        <p>Design and facilitation of workshops, instructional rounds, leadership development, and school improvement planning.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.53a16 16 0 0 0 5.92 5.92l1.9-1.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Student &amp; Family Advocacy</h3>
+        <p>Antiracist policy review, student voice data collection, and programming support for international students toward graduation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── INSTRUCTIONAL SHIFTS ── -->
+<section class="shifts-section">
+  <div class="container">
+    <p class="section-eyebrow" style="color: var(--gold);">Framework</p>
+    <h2 class="section-title">Three Instructional Shifts</h2>
+    <div class="divider"></div>
+    <p class="section-lead">At the core of literacy and language equity work are three evidence-based instructional shifts, drawn from the best-aligned curriculum research.</p>
+
+    <div class="shifts-grid">
+      <div class="shift-card">
+        <div class="shift-letter">C</div>
+        <h3>Complexity</h3>
+        <p>Practice regularly with complex text and its academic language. Students grow when expectations match grade-level rigor.</p>
+      </div>
+      <div class="shift-card">
+        <div class="shift-letter">E</div>
+        <h3>Evidence</h3>
+        <p>Ground reading, writing, and speaking in evidence from text — both literary and informational — not assumption or prior knowledge alone.</p>
+      </div>
+      <div class="shift-card">
+        <div class="shift-letter">K</div>
+        <h3>Knowledge</h3>
+        <p>Build knowledge and language through content-rich nonfiction. Deep understanding of the world is the engine of literacy growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ── -->
+<section class="credentials-section" id="credentials">
+  <div class="container">
+    <p class="section-eyebrow">Experience</p>
+    <h2 class="section-title">Over 30 Years of Service</h2>
+    <div class="divider"></div>
+
+    <div class="cred-stat">
+      <span class="number">30+</span>
+      <span class="label">years in education</span>
+    </div>
+
+    <ul class="cred-list">
+      <li>M.Ed. in Curriculum &amp; Instruction with Technology Integration</li>
+      <li>National Board Certified Teacher: English as a New Language Specialist K–12</li>
+      <li>Former Vice President, UMD College of Education Alumni Network Board</li>
+      <li>TNTP: PD Design &amp; Supports for English Learners</li>
+      <li>EdTrust: Student Voice Data</li>
+      <li>Achieve: Curriculum</li>
+      <li>UnboundEd: Facilitation &amp; Design, GLEAM</li>
+      <li>WebbAlign: Standards Alignment, State Assessments</li>
+      <li>Thomas Fordham Institute: Curriculum Audit</li>
+      <li>ANet: Instructional Rounds</li>
+      <li>NCT: Equity Commissioner</li>
+      <li>WIDA &amp; CAL: Standards Alignment, Conferences &amp; PD</li>
+      <li>Smithsonian Institute: Science Course Development</li>
+      <li>Maryland Dept. of Education: PARCC Standards Setting</li>
+      <li>Kentucky Dept. of Education &amp; EDC: Leadership eLearning</li>
+      <li>Montgomery County Public Schools: Learning &amp; Achievement Specialist</li>
+      <li>Coordinator of International Admissions &amp; Enrollment</li>
+      <li>Elementary, Middle, and High School Teacher</li>
+      <li>High School ESOL Instructional Specialist</li>
+      <li>Maryland Certified Administrator II</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── PROFESSIONAL LEARNING ── -->
+<section class="pl-section">
+  <div class="container">
+    <p class="section-eyebrow">Professional Learning</p>
+    <h2 class="section-title">Collaboration &amp; Coaching</h2>
+    <div class="divider"></div>
+    <p class="section-lead">From design to facilitation, leadership development to data analysis — Padilla Ed brings deep expertise across the full arc of professional learning.</p>
+
+    <div class="pl-tags">
+      <span class="pl-tag">Design</span>
+      <span class="pl-tag">Facilitation</span>
+      <span class="pl-tag">Review</span>
+      <span class="pl-tag">Instructional Rounds</span>
+      <span class="pl-tag">Observations</span>
+      <span class="pl-tag">Leadership Development</span>
+      <span class="pl-tag">School Improvement</span>
+      <span class="pl-tag">Two-Way Immersion</span>
+      <span class="pl-tag">English Language Learners</span>
+      <span class="pl-tag">Emergent Multilinguals</span>
+      <span class="pl-tag">Student &amp; Family Advocacy</span>
+      <span class="pl-tag">Antiracist Policy</span>
+      <span class="pl-tag">Data Analysis</span>
+      <span class="pl-tag">Instructional Technology</span>
+      <span class="pl-tag">International Student Programming</span>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:1rem;">Credentials &amp; Partners</h3>
+    <div class="pl-partners">
+      <div class="pl-partner">
+        <a href="https://www.unbounded.org/blog/what-is-gleam" target="_blank">GLEAM Badged</a><br />
+        <span style="font-size:0.8rem; color:var(--slate); font-weight:400;">by UnboundEd.org</span>
+      </div>
+      <div class="pl-partner">
+        <a href="https://education.delaware.gov/educators/k12-licensing-and-careers/educator-evaluation/dtgss/dtgss-overview/" target="_blank">Delaware DOE — DTGSS</a><br />
+        <span style="font-size:0.8rem; color:var(--slate); font-weight:400;">Educator Evaluation Framework</span>
+      </div>
+      <div class="pl-partner">
+        Skillful Teacher &amp;<br />Skillful Leader
+      </div>
+      <div class="pl-partner">
+        <a href="https://leadingforschoolimprovement.com/about-us/" target="_blank">Leading for School Improvement</a>
+      </div>
+      <div class="pl-partner">
+        <a href="https://www.podereducators.org/" target="_blank">PODER Educators</a>
+      </div>
+      <div class="pl-partner">
+        Facebook:<br />Project Spark
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOGO STORY ── -->
+<section class="logo-section">
+  <div class="container">
+    <div class="logo-story-inner">
+      <div class="logo-img-wrap" aria-label="Padilla Ed logo: a crescent moon rising above a skillet pan">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="logo-svg" aria-hidden="true">
+
+          <!-- Background circle -->
+          <circle cx="100" cy="100" r="100" fill="#2E3349"/>
+
+          <!-- 4-pointed sparkle macro: top-left -->
+          <path d="M38 42 L41 52 L44 42 L41 32 Z M31 49 L41 52 L51 49 L41 46 Z" fill="white"/>
+          <!-- sparkle: top-right large -->
+          <path d="M152 30 L155 42 L158 30 L155 18 Z M143 36 L155 42 L167 36 L155 30 Z" fill="white"/>
+          <!-- sparkle: right middle -->
+          <path d="M167 112 L169 119 L171 112 L169 105 Z M162 116 L169 119 L176 116 L169 113 Z" fill="white"/>
+          <!-- sparkle: bottom-left -->
+          <path d="M38 148 L41 157 L44 148 L41 139 Z M32 152 L41 157 L50 152 L41 147 Z" fill="white"/>
+
+          <!-- Spoon bowl: large white oval -->
+          <ellipse cx="100" cy="88" rx="38" ry="44" fill="white"/>
+
+          <!-- Spoon handle: narrows then drops down through bottom of circle -->
+          <!-- Neck narrowing from bowl -->
+          <path d="M88 128 Q86 138 87 150 Q88 162 92 172 Q96 182 100 188 Q104 182 108 172 Q112 162 113 150 Q114 138 112 128 Q108 126 100 126 Q92 126 88 128 Z" fill="white"/>
+
+          <!-- Holes/dots inside spoon bowl in tan/khaki -->
+          <circle cx="93"  cy="76"  r="7.5" fill="#8B7D5E"/>
+          <circle cx="112" cy="80"  r="9"   fill="#8B7D5E"/>
+          <circle cx="96"  cy="96"  r="6.5" fill="#8B7D5E"/>
+          <circle cx="113" cy="101" r="6"   fill="#8B7D5E"/>
+          <circle cx="100" cy="113" r="5.5" fill="#8B7D5E"/>
+
+        </svg>
+      </div>
+      <div class="logo-text">
+        <p class="section-eyebrow" style="text-align:left;">About the Logo</p>
+        <p class="logo-story">The Padilla family originally lived in one of the various places named Padilla in Spain — a name derived from the Spanish word <em>padilla</em>, meaning "frying pan" or "bread pan." The moon is a feminine symbol universally representing the rhythm of time, embodying the cycle of life. The phases of the moon symbolize immortality, eternity, and enlightenment — hence the pan serving education in the Padilla Ed logo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <p class="section-eyebrow" style="color:var(--gold);">Get in Touch</p>
+    <h2 class="section-title">Ready to Work Together?</h2>
+    <div class="divider" style="margin:1rem auto 2rem;"></div>
+    <p>Norka M. Padilla, M.Ed., NBCT</p>
+    <p>President &amp; Owner · Washington, DC &amp; Maryland</p>
+    <br />
+    <a href="mailto:Norka.Education@gmail.com" class="email-link">Norka.Education@gmail.com</a>
+    <br />
+    <a href="https://www.linkedin.com/in/norka-padilla-edequity/" target="_blank" class="contact-linkedin">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Padilla Educational Consulting · Washington, DC &amp; Maryland</p>
+</footer>
+
+</body>
+</html>
